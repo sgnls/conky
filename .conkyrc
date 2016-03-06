@@ -1,0 +1,108 @@
+#							
+#  Version : v0.2
+#  License : GNU GPL version 2+
+#
+
+# background yes
+update_interval 1
+
+cpu_avg_samples 2
+net_avg_samples 2
+temperature_unit celsius
+
+double_buffer yes
+no_buffers yes
+text_buffer_size 2048
+
+#alignment tr
+gap_x 3000
+gap_y 500
+minimum_size 200 1200
+maximum_width 200
+
+own_window yes
+own_window_type conky
+own_window_hints undecorated,below,sticky,skip_taskbar,skip_pager 
+own_window_argb_visual yes
+own_window_transparent yes
+own_window_colour FFFFFF
+
+#own_window yes
+#own_window_type normal
+#own_window_argb_visual yes
+#own_window_argb_value 0
+#own_window_transparent yes
+
+border_inner_margin 0
+border_outer_margin 0
+
+draw_shades no
+draw_outline no
+draw_borders no
+draw_graph_borders no
+
+override_utf8_locale yes
+use_xft yes
+xftfont Cantarell dreams:size=9
+xftalpha 0.5
+uppercase no
+
+default_color EEEEEE
+color1 DDDDDD
+color2 AAAAAA
+color3 888888
+color4 288FB2
+color5 FFFFFF
+
+lua_load ~/.conky/luna.lua
+lua_draw_hook_post main
+
+TEXT
+${voffset 55}${font Cantarell:size=9,weight:bold}${color4}$nodename       ${color5}${hr 2}
+
+${offset 65}${font Cantarell:size=9,weight:normal}${color5}$uptime
+${font sans-serif:normal:size=7}${color5}${cpugraph cpu1}
+${font sans-serif:normal:size=7}${color5}${memgraph mem}${voffset 0}
+
+
+
+
+
+
+
+
+${offset 45}${font Cantarell:size=9,weight:bold}${color}CPU
+${offset 45}${font Cantarell:size=9,weight:normal}${color4}${top name 1}${alignr}${top cpu 1}%
+${offset 45}${font Cantarell:size=9,weight:normal}${color1}${top name 2}${alignr}${top cpu 2}%
+${offset 45}${font Cantarell:size=9,weight:normal}${color2}${top name 3}${alignr}${top cpu 3}%
+${offset 45}${font Cantarell:size=9,weight:normal}${color3}${top name 4}${alignr}${top cpu 4}%
+${offset 45}${font Cantarell:size=9,weight:normal}${color3}${top name 5}${alignr}${top cpu 5}%
+
+
+
+${offset 45}${font Cantarell:size=9,weight:bold}${color}MEM
+${offset 45}${font Cantarell:size=9,weight:normal}${color4}${top_mem name 1}${alignr}${top_mem mem 1}%
+${offset 45}${font Cantarell:size=9,weight:normal}${color1}${top_mem name 2}${alignr}${top_mem mem 2}%
+${offset 45}${font Cantarell:size=9,weight:normal}${color2}${top_mem name 3}${alignr}${top_mem mem 3}%
+${offset 45}${font Cantarell:size=9,weight:normal}${color3}${top_mem name 4}${alignr}${top_mem mem 4}%
+${offset 45}${font Cantarell:size=9,weight:normal}${color3}${top_mem name 4}${alignr}${top_mem mem 5}%
+
+
+
+
+${offset 45}${font Cantarell:size=9,weight:bold}${color}DISK
+${offset 45}${font Cantarell:size=9,weight:normal}${color}Free : ${fs_free /home} / ${fs_size /home}
+
+
+
+
+${offset 55}${font Cantarell:size=9,weight:bold}${color} eth0           		   wlan0
+${offset 55}${font Cantarell:size=9,weight:normal}${color2}${addr eth0}${alignr}${addr wlan0}
+	
+${offset 55}${font Cantarell:size=9,weight:normal}${color}Up: $color2${upspeed eth0} ${alignr}${color}Down: $color2${downspeed wlan0}
+${offset 55}${font Cantarell:size=9,weight:normal}${color}Down: $color2${downspeed eth0} ${alignr}${color}Down: $color2${downspeed wlan0}
+
+${color4}${hr 2}
+
+${if_running clementine}${execpi 1 ~/rdm/clem.pl }${endif}
+
